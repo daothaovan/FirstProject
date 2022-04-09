@@ -6,10 +6,13 @@ class Counter extends Component {
   constructor() {
     super();
     this.state = {
-      counter: 10,
+      counter: 0,
     };
     // this.increment = this.increment.bind(this);
     this.reset = this.reset.bind(this);
+    // this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+
   }
   render() {
     return (
@@ -23,36 +26,48 @@ class Counter extends Component {
         >
           +{this.props.add}
         </button> */}
-        <CounterButton by={1}/>
-        <CounterButton by={5}/>
-        <CounterButton by={10}/>
-
+        <CounterButton
+          by={1}
+          incrementMethod={this.increment}
+          decrementMethod={this.decrement}
+        />
+        <CounterButton
+          by={5}
+          incrementMethod={this.increment}
+          decrementMethod={this.decrement}
+        />
+        <CounterButton
+          by={10}
+          incrementMethod={this.increment}
+          decrementMethod={this.decrement}
+        />
         <span className="count">{this.state.counter}</span>
-      <div>
+        <div>
           <button className="reset" onClick={this.reset}>
-              Reset
-              </button>
-      </div>
+            Reset
+          </button>
+        </div>
       </div>
     );
   }
 
-//   increment() {
-//     console.log("Increment");
-    
-//     this.setState({counter: this.state.counter + this.props.add});
-//   }
-increment(){
-this.setState({counter : this.state.counter + this.props.by});
-}
+  //   increment() {
+  //     console.log("Increment");
 
-decrement(){
-    this.setState({counter : this.state.counter - this.props.by});
-
-}
-reset(){
-    this.setState({counter : 0});
-}
+  //     this.setState({counter: this.state.counter + this.props.add});
+  //   }
+  // increment(by) {
+  //   this.setState({ counter: this.state.counter + by });
+  // }
+  increment = (by) => {
+    this.setState({ counter: this.state.counter + by });
+  }
+  decrement(by) {
+    this.setState({ counter: this.state.counter - by });
+  }
+  reset() {
+    this.setState({ counter: 0 });
+  }
 }
 
 export default Counter;
